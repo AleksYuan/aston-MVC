@@ -2,10 +2,6 @@ package com.yanaev.astonMVC.dao;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.AbstractEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import java.sql.*;
 
@@ -150,7 +146,6 @@ public class AbstractCrudDao {
             throw new RuntimeException();
         }
     }
-
 
     protected void addEntityToEntity(String SQL, Long id1, Long id2) {
         try {

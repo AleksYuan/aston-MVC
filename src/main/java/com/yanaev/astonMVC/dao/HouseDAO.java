@@ -23,32 +23,11 @@ public class HouseDAO extends AbstractCrudDao implements CrudRepo<House> {
         try {
             while (resultSet.next()) {
                 house = fillInHouseWithData(resultSet);
-//                house = new House();
-//                house.setId(resultSet.getLong("id"));
-//                house.setArea(resultSet.getInt("area"));
-//                house.setGarage(resultSet.getBoolean("garage"));
-//                house = fillInEntityHouseWithUsers(house);
                 houses.add(house);
             }
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-//        List<House> houses = new ArrayList<>();
-//        try {
-//            Statement statement = connection.createStatement();
-//            String SQL = "SELECT * FROM house";
-//            ResultSet resultSet = statement.executeQuery(SQL);
-//
-//            while (resultSet.next()) {
-//                House house = new House();
-//                house.setId(resultSet.getLong("id"));
-//                house.setArea(resultSet.getInt("area"));
-//                house.setGarage(resultSet.getBoolean("garage"));
-//                houses.add(house);
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
         return houses;
     }
 
@@ -60,32 +39,10 @@ public class HouseDAO extends AbstractCrudDao implements CrudRepo<House> {
         try {
             if (resultSet.next()) {
                 house = fillInHouseWithData(resultSet);
-//                house = new House();
-//                house.setId(resultSet.getLong("id"));
-//                house.setArea(resultSet.getInt("area"));
-//                house.setGarage(resultSet.getBoolean("garage"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-//        try {
-//            PreparedStatement prepStat =
-//                    connection.prepareStatement("SELECT * FROM house WHERE id =?");
-//
-//            prepStat.setLong(1, id);
-//
-//            ResultSet resultSet = prepStat.executeQuery();
-//
-//            if (resultSet.next()) {
-//                house = new House();
-//                house.setId(resultSet.getLong("id"));
-//                house.setArea(resultSet.getInt("area"));
-//                house.setGarage(resultSet.getBoolean("garage"));
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-
         if (house == null) return Optional.empty();
         return Optional.of(house);
     }
@@ -102,33 +59,12 @@ public class HouseDAO extends AbstractCrudDao implements CrudRepo<House> {
         String SQL = "INSERT INTO house(area, garage) VALUES(?, ?)";
         executeUpdatePreparedStatement(SQL, entity.getArea(), entity.getGarage(), null);
         return true;
-//        try {
-//            PreparedStatement prepStat = connection.prepareStatement(
-//                    "INSERT INTO house(area, garage) VALUES(?, ?)");
-//            prepStat.setInt(1, entity.getArea());
-//            prepStat.setBoolean(2, entity.getGarage());
-//            prepStat.executeUpdate();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     @Override
     public void updateById(Long id, House entity) {
         String SQL = "UPDATE house SET area=?, garage=? WHERE id=?";
         executeUpdatePreparedStatement(SQL, entity.getArea(), entity.getGarage(), entity.getId());
-//        try {
-//            PreparedStatement prepStat =
-//                    connection.prepareStatement("UPDATE house SET area=?, garage=? WHERE id=?");
-//            prepStat.setInt(1, entity.getArea());
-//            prepStat.setBoolean(2, entity.getGarage());
-//            prepStat.executeUpdate();
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
 
