@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>house/all</title>
+</head>
+<body>
+
+  <table class="house-db">
+    <tr>
+      <th>id</th>
+      <th>Area</th>
+      <th>Garage</th>
+      <th>People</th>
+      <th>Link</th>
+    </tr>
+
+    <th:block th:each="house : ${houses}">
+      <tr>
+        <td th:text="${house.id}"/>
+        <td th:text="${house.area}"/>
+        <td>
+          <span th:if="${house.garage == true}">there is</span>
+          <span th:if="${house.garage == false}">there is not</span>
+        </td>
+        <td>
+          <div th:each="user : ${house.getUsers()}">
+            <a th:text="${'id:   ' + user.id + ' | name:  ' + user.firstName + ' | phone:   ' + user.phoneNumber}"/>
+          </div>
+        </td>
+
+        <td><a th:href="@{/house/{id}(id=${house.id})}"> Go to house </a></td>
+      </tr>
+    </th:block>
+  </table>
+
+<br/>
+<hr/>
+<br/>
+
+  <a href="/house/new">Create new house</a>
+
+</body>
+</html>

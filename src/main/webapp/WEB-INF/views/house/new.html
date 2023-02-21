@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>house/new</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/house/new}" th:object="${house}">
+
+    <label for="area">Enter name: </label>
+    <input type="text" th:field="*{area}" id="area">
+    <br/>
+
+    <label for="garage">Enter garage (true/false): </label>
+    <input type="text" th:field="*{garage}" id="garage">
+    <br/>
+
+    <input type="submit" value="add!">
+</form>
+
+</body>
+</html>

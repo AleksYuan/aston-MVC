@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>wheel/one</title>
+</head>
+<body>
+
+<label for="id">id: </label>
+<b th:text="${wheel.id}" id="id"></b>
+<br/>
+
+<label for="type">type: </label>
+<b th:text="${wheel.type}" id="type"></b>
+<br/>
+
+<label for="radius">radius: </label>
+<b th:text="${wheel.radius}" id="radius"></b>
+<br/>
+
+<label for="carId">carId: </label>
+<b th:text="${wheel.carId}" id="carId"></b>
+<br/>
+
+<a th:href="@{/wheel/{id}/edit(id=${wheel.id})}">Edit</a>
+<br/>
+
+<form th:method="DELETE" th:action="@{/wheel/{id}(id=${wheel.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

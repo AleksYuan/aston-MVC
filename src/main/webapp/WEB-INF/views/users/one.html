@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>users/one</title>
+</head>
+<body>
+
+<label for="id">id: </label>
+<b th:text="${user.id}" id="id" > </b>
+<br/>
+
+<label for="name">Name: </label>
+<b th:text="${user.firstName}" id="name" > </b>
+<br/>
+
+<label for="surname">Surname: </label>
+<b th:text="${user.lastName}" id="surname"> </b>
+<br/>
+
+<label for="age">Age: </label>
+<b th:text="${user.age}" id="age"> </b>
+<br/>
+
+<label for="phone-number">Phone number: </label>
+<b th:text="${user.phoneNumber}" id="phone-number"> </b>
+<br/>
+<hr/>
+
+<label for="houses"> HOUSES </label>
+<div id="houses" th:each="house : ${user.houses}">
+    <b th:text="${'id: ' + house.id + ' |  area: ' + house.area + ' | garage yes/no: ' + house.garage}"></b>
+</div>
+
+<br/>
+<hr/>
+
+<a th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a>
+
+<br/>
+
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

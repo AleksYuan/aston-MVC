@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>wheel/all</title>
+</head>
+<body>
+
+  <table class="wheel-db">
+    <tr>
+      <th>id</th>
+      <th>Type</th>
+      <th>Radius</th>
+      <th>Car-id</th>
+      <th>Link</th>
+    </tr>
+
+    <th:block th:each="wheel : ${wheels}">
+      <tr>
+        <td th:text="${wheel.id}"/>
+        <td th:text="${wheel.type}"/>
+        <td th:text="${wheel.radius}"/>
+        <td th:text="${wheel.carId}"/>
+
+        <td><a th:href="@{/wheel/{id}(id=${wheel.id})}"> Go to wheel </a></td>
+      </tr>
+    </th:block>
+  </table>
+
+<br/>
+<hr/>
+<br/>
+
+  <a href="/wheel/new">Create new house</a>
+
+</body>
+</html>

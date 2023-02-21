@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>car/new</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/car/new}" th:object="${car}">
+
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br/>
+
+    <label for="surname">Enter comment: </label>
+    <input type="text" th:field="*{comment}" id="surname">
+    <br/>
+
+    <label for="age">Enter created year: </label>
+    <input type="text" th:field="*{createdYear}" id="age">
+    <br/>
+
+    <label for="phone">Enter house id: </label>
+    <input type="text" th:field="*{houseId}" id="phone">
+    <br/>
+
+    <input type="submit" value="add!">
+</form>
+
+</body>
+</html>

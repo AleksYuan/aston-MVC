@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>house/one</title>
+</head>
+<body>
+
+<label for="id">id: </label>
+<b th:text="${house.id}" id="id"></b>
+<br/>
+
+<label for="area">Area: </label>
+<b th:text="${house.area}" id="area"> </b>
+<br/>
+
+<label for="garage">Garage: </label>
+<!--<b th:text="${house.garage}" id="garage"> </b>-->
+<b id="garage" th:if="${house.garage == true}">there is</b>
+<b th:if="${house.garage == false}">there is not</b>
+<br/>
+
+
+<div th:each="user : ${house.getUsers()}">
+    <a th:href="@{/users/{id}(id=${user.id})}"
+    th:text="${'id:   ' + user.id + ' | name:  ' + user.firstName + ' | phone:   ' + user.phoneNumber}"/>
+</div>
+
+
+<br/>
+
+
+<a th:href="@{/house/{id}/edit(id=${house.id})}">Edit</a>
+<br/>
+
+<form th:method="DELETE" th:action="@{/house/{id}(id=${house.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

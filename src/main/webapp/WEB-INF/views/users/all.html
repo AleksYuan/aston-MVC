@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>users/all</title>
+</head>
+<body>
+
+<!--<div th:each="user: ${users}">-->
+<!--    <a th:href="@{/users/{id}(id=${user.id})}"-->
+<!--       th:text = "${user.id + ' ' + user.firstName + ' ' + user.lastName + ' ' + user.phoneNumber}"></a>-->
+<!--</div>-->
+
+<table class="user-db">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>PhoneNumber</th>
+        <th>Houses</th>
+        <th>Cars</th>
+        <th>link</th>
+    </tr>
+
+    <th:block th:each="user : ${users}">
+        <tr>
+            <td th:text="${user.id}"/>
+            <td th:text="${user.firstName}"/>
+            <td th:text="${user.lastName}"/>
+            <td th:text="${user.age}"/>
+            <td th:text="${user.phoneNumber}"/>
+            <td>
+               <div th:each="house : ${user.houses}">
+                   <span th:text="${house.id + ' ' + house.area + ' ' + house.garage}"></span>
+               </div>
+            </td>
+
+            <td>
+                <div th:each="car : ${user.cars}">
+                    <span th:text="${car.id + ' ' + car.name + ' ' + car.createdYear}"></span>
+                </div>
+            </td>
+
+            <td> <a th:href="@{/users/{id}(id=${user.id})}"
+                    th:text ="${'go to user #' + user.id}" /> </td>
+        </tr>
+    </th:block>
+</table>
+
+
+<br/>
+<hr/>
+<br/>
+
+<a href="/users/new">Create new Person</a>
+
+</body>
+</html>

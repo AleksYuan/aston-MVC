@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>car/one</title>
+</head>
+<body>
+
+<label for="id">id: </label>
+<b th:text="${car.id}" id="id"></b>
+<br/>
+
+<label for="name">name: </label>
+<b th:text="${car.name}" id="name"></b>
+<br/>
+
+<label for="comment">comment: </label>
+<b th:text="${car.comment}" id="comment"></b>
+<br/>
+
+<label for="createdYear">createdYear: </label>
+<b th:text="${car.createdYear}" id="createdYear"></b>
+<br/>
+
+<label for="houseId">houseId: </label>
+<b th:text="${car.houseId}" id="houseId"></b>
+<br/>
+
+
+
+<div th:each="user : ${car.getUsers()}">
+    <a th:href="@{/users/{id}(id=${user.id})}"
+    th:text="${'id:   ' + user.id + ' | name:  ' + user.firstName + ' | phone:   ' + user.phoneNumber}"/>
+</div>
+<br/>
+
+
+<div th:each="wheel : ${car.wheels}">
+    <a th:href="@{/users/{id}(id=${wheel.id})}"
+       th:text="${'id:   ' + wheel.id + ' | name:  ' + wheel.type + ' | phone:   ' + wheel.radius}"/>
+</div>
+<br/>
+
+
+<a th:href="@{/car/{id}/edit(id=${car.id})}">Edit</a>
+<br/>
+
+<form th:method="DELETE" th:action="@{/car/{id}(id=${car.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

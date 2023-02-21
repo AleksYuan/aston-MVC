@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>user/edit</title>
+</head>
+<body>
+
+<div>
+    <form th:method="PATCH" th:action="@{/users/{id}/edit(id=${user.id})}" th:object="${user}">
+
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{firstName}" id="name">
+        <br/>
+
+        <label for="surname">Enter surname: </label>
+        <input type="text" th:field="*{lastName}" id="surname">
+        <br/>
+
+        <label for="age">Enter age: </label>
+        <input type="text" th:field="*{age}" id="age">
+        <br/>
+
+        <label for="phone">Enter phone: </label>
+        <input type="text" th:field="*{phoneNumber}" id="phone">
+        <br/>
+
+        <input type="submit" value="update data">
+    </form>
+</div>
+
+<br/>
+<hr/>
+
+<div>
+
+    <div th:each="house : ${user.houses}">
+        <span th:text="${'id: ' + house.id + '   area: ' + house.area + '  garage: ' + house.garage}"></span>
+    </div>
+
+    <br/>
+
+    <form th:method="POST" th:action="@{/users/{id}/edit/add-house-to-user(id=${user.id})}">
+        <label th:for="idHouse">Добавить Дом (id)</label>
+        <input type="text" th:name="idHouse" th:id="idHouse">
+        <input type="submit" value="добавить дом">
+    </form>
+</div>
+
+<br/>
+<hr/>
+
+<div>
+
+    <div th:each="car : ${user.cars}">
+        <span th:text="${'id: ' + car.id + '   name: ' + car.name + '  year: ' + car.createdYear}"></span>
+    </div>
+
+    <br/>
+
+    <form th:method="POST" th:action="@{/users/{id}/edit/add-car-to-user(id=${user.id})}">
+        <label th:for="idCar">Добавить Машину (id)</label>
+        <input type="text" th:name="idCar" th:id="idCar">
+        <input type="submit" value="добавить машину">
+    </form>
+</div>
+
+</body>
+</html>

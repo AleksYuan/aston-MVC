@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>wheel/update</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/wheel/new}" th:object="${wheel}">
+
+    <label for="name">Enter type: </label>
+    <input type="text" th:field="*{type}" id="name">
+    <br/>
+
+    <label for="radius">Enter radius: </label>
+    <input type="text" th:field="*{radius}" id="radius">
+    <br/>
+
+    <label for="carId">Enter car id: </label>
+    <input type="text" th:field="*{carId}" id="carId">
+    <br/>
+
+    <input type="submit" value="add!">
+</form>
+
+</body>
+</html>

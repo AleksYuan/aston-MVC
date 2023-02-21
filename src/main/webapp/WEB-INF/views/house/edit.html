@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>house/edit</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/house/{id}/edit(id=${house.id})}" th:object="${house}">
+
+  <label for="area">Enter area: </label>
+  <input type="text" th:field="*{area}" id="area">
+  <br/>
+
+  <label for="garage">Enter garage (true/false): </label>
+  <input type="text" th:field="*{garage}" id="garage">
+  <br/>
+
+  <input type="submit" value="update">
+
+</form>
+
+</body>
+</html>

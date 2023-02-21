@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>car/all</title>
+</head>
+<body>
+
+  <table class="car-db">
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Comment</th>
+      <th>Year</th>
+      <th>House-id</th>
+      <th>Users</th>
+      <th>Wheels</th>
+    </tr>
+
+    <th:block th:each="car : ${cars}">
+      <tr>
+        <td th:text="${car.id}"/>
+        <td th:text="${car.name}"/>
+        <td th:text="${car.comment}"/>
+        <td th:text="${car.createdYear}"/>
+        <td th:text="${car.houseId}"/>
+
+        <td>
+          <div th:each="user : ${car.getUsers()}">
+            <a th:text="${'id:   ' + user.id + ' | name:  ' + user.firstName + ' | phone:   ' + user.phoneNumber}"/>
+          </div>
+        </td>
+
+        <td>
+          <div th:each="wheel : ${car.getWheels()}">
+            <a th:text="${'id:   ' + wheel.id + ' | type:  ' + wheel.type + ' | radius:   ' + wheel.radius}"/>
+          </div>
+        </td>
+
+        <td><a th:href="@{/car/{id}(id=${car.id})}"> Go to car </a></td>
+      </tr>
+    </th:block>
+  </table>
+
+<br/>
+<hr/>
+<br/>
+
+  <a href="/car/new">Create new car</a>
+
+</body>
+</html>
