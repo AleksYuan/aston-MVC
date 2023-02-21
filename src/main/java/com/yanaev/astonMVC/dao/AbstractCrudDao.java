@@ -38,8 +38,7 @@ public class AbstractCrudDao {
     }
 
     protected ResultSet getResultSet(String preparedStatement, Long id) {
-        try {
-            PreparedStatement preStat = connection.prepareStatement(preparedStatement);
+        try (PreparedStatement preStat = connection.prepareStatement(preparedStatement)) {
             preStat.setLong(1, id);
             return preStat.executeQuery();
         } catch (SQLException e) {
@@ -48,14 +47,13 @@ public class AbstractCrudDao {
     }
 
     protected void executeUpdatePreparedStatement(String preparedStatement,
-                                               String param1,
-                                               String param2,
-                                               Integer param3,
-                                               String param4,
-                                               Long param5) {
-        try {
-            PreparedStatement prepStat = connection.prepareStatement(
-                    preparedStatement);
+                                                  String param1,
+                                                  String param2,
+                                                  Integer param3,
+                                                  String param4,
+                                                  Long param5) {
+        try (PreparedStatement prepStat = connection.prepareStatement(
+                preparedStatement);) {
             prepStat.setString(1, param1);
             prepStat.setString(2, param2);
             prepStat.setInt(3, param3);
@@ -74,9 +72,9 @@ public class AbstractCrudDao {
                                                   Integer param3,
                                                   Long param4,
                                                   Long param5) {
-        try {
-            PreparedStatement prepStat = connection.prepareStatement(
-                    preparedStatement);
+        try (PreparedStatement prepStat = connection.prepareStatement(
+                preparedStatement)) {
+
             prepStat.setString(1, param1);
             prepStat.setString(2, param2);
             prepStat.setInt(3, param3);
@@ -90,12 +88,12 @@ public class AbstractCrudDao {
     }
 
     protected void executeUpdatePreparedStatement(String preparedStatement,
-                                               Integer param1,
-                                               Boolean param2,
-                                               Long param3) {
-        try {
-            PreparedStatement prepStat = connection.prepareStatement(
-                    preparedStatement);
+                                                  Integer param1,
+                                                  Boolean param2,
+                                                  Long param3) {
+        try (PreparedStatement prepStat = connection.prepareStatement(
+                preparedStatement)) {
+
             prepStat.setInt(1, param1);
             prepStat.setBoolean(2, param2);
             if (param3 != null) prepStat.setLong(3, param3);
@@ -111,9 +109,9 @@ public class AbstractCrudDao {
                                                   Integer param2,
                                                   Long param3,
                                                   Long param4) {
-        try {
-            PreparedStatement prepStat = connection.prepareStatement(
-                    preparedStatement);
+        try (PreparedStatement prepStat = connection.prepareStatement(
+                preparedStatement)) {
+
             prepStat.setString(1, param1);
             prepStat.setInt(2, param2);
             if (param3 != null) prepStat.setLong(3, param3);
@@ -135,9 +133,9 @@ public class AbstractCrudDao {
     }
 
     protected void addManyToManyDependency(String preparedStatement, Long id1, Long id2) {
-        try {
-            PreparedStatement prepStat = connection.prepareStatement(
-                    preparedStatement);
+        try (PreparedStatement prepStat = connection.prepareStatement(
+                preparedStatement)) {
+
             prepStat.setLong(1, id1);
             prepStat.setLong(2, id2);
             prepStat.executeUpdate();
